@@ -4,6 +4,14 @@ dotcommon is a crawler that is built to answer questions
 It searches GitHub for 1000 most recently edited configs
 (to follow trends) and counts such things.
 
+    Disclaimer: the project isn't run by a data scientist
+    and the numbers below should be interpreted in the context
+    provided above: *1000 most recently edited configs hosted on
+    GitHub*. Make any further assumptions on your own risk.
+    See `these slides`_ if you look for a serious research.
+
+.. _these slides: http://bit.ly/2NVyiXu
+
 .. contents:: Here are top-tens of various things:
 
 Bash
@@ -15,16 +23,16 @@ Aliases
 
 
 ========================================================================================================================================================================  ===
-``alias la='ls -A'``                                                                                                                                                      183
-``alias l='ls -CF'``                                                                                                                                                      178
-``alias ll='ls -alF'``                                                                                                                                                    158
-``alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'``  144
-``alias ls='ls --color=auto'``                                                                                                                                             83
-``alias grep='grep --color=auto'``                                                                                                                                         48
-``alias ..='cd ..'``                                                                                                                                                       38
-``alias gs='git status'``                                                                                                                                                  36
-``alias mv='mv -i'``                                                                                                                                                       34
-``alias rm='rm -i'``                                                                                                                                                       30
+``alias la='ls -A'``                                                                                                                                                      173
+``alias l='ls -CF'``                                                                                                                                                      171
+``alias ll='ls -alF'``                                                                                                                                                    160
+``alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'``  152
+``alias ls='ls --color=auto'``                                                                                                                                             75
+``alias mv='mv -i'``                                                                                                                                                       66
+``alias rm='rm -i'``                                                                                                                                                       62
+``alias cp='cp -i'``                                                                                                                                                       62
+``alias grep='grep --color=auto'``                                                                                                                                         61
+``alias ..='cd ..'``                                                                                                                                                       51
 ========================================================================================================================================================================  ===
 
 
@@ -33,16 +41,16 @@ Exports
 
 
 ==========================================================================================  ==
-``export EDITOR=vim``                                                                       74
-``export NVM_DIR="$HOME/.nvm"``                                                             50
-``export PATH``                                                                             33
-``export CLICOLOR=1``                                                                       30
-``export TERM=xterm-256color``                                                              27
-``export LC_ALL=en_US.UTF-8``                                                               25
-``export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'``  23
-``export VISUAL=vim``                                                                       23
-``export LANG=en_US.UTF-8``                                                                 22
-``export HISTCONTROL=ignoreboth``                                                           19
+``export NVM_DIR="$HOME/.nvm"``                                                             53
+``export EDITOR=vim``                                                                       44
+``export HISTCONTROL=ignoreboth``                                                           31
+``export TERM=xterm-256color``                                                              31
+``export VISUAL=vim``                                                                       24
+``export MYNAME``                                                                           24
+``export LESS='-M'``                                                                        24
+``export CLICOLOR=1``                                                                       23
+``export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'``  22
+``export PATH``                                                                             21
 ==========================================================================================  ==
 
 
@@ -50,50 +58,51 @@ PS1
 ~~~
 
 
-=============================================================================================================================================================================================  ==
-``PS1='[\u@\h \W]\$ '``                                                                                                                                                                        29
-``PS1="$"``                                                                                                                                                                                    28
-``PS1='[\u@\h \w \t \# ]\$ '``                                                                                                                                                                  2
-``PS1='\[\e[01;31m\]\h\[\e[01;34m\] \W \$\[\e[00m\] '``                                                                                                                                         2
-``PS1=' \w \$ '``                                                                                                                                                                               2
-``PS1="$DGY_ON_GY\W $BU_ON_GY$NO_COLOR\$(~/bin/prompt_git.sh)\$ "``                                                                                                                             2
-``PS1='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[01;31m\]$(parse_git_branch)\[\033[00m\]\$\n'``                                                2
-``PS1="\n\[\e[0;34m\]┌─[\[\e[1;36m\u\e[0;34m\]]──[\e[1;37m\w\e[0;34m]──[\[\e[1;36m\]${HOSTNAME%%.*}\[\e[0;34m\]]\[\e[1;35m\]: \$\[\e[0;34m\]\n\[\e[0;34m\]└─╼ \[\e[1;35m\]>> \[\e[00;00m\]"``   2
-``PS1="${COLOR_RED}\$(SELECT)${COLOR_GREEN}\\w ${COLOR_PURPLE}\$(precmd)${COLOR_RESET}``                                                                                                        2
-``PS1="$G┌─[$BR\u$G]$BY@$G[$BW${HOSTNAME%%.*}$G]$B:\w\n$G└──>$BR \\$ $NONE"``                                                                                                                   2
-=============================================================================================================================================================================================  ==
+=========================================================================================================================================  ==
+``PS1='[\u@\h \W]\$ '``                                                                                                                    30
+``PS1="$"``                                                                                                                                27
+``PS1='\[\033[1;31m\]$ >\[\033[00m\] '``                                                                                                    5
+``PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '``                                                                                     3
+``PS1='\$ '``                                                                                                                               2
+``PS1=''``                                                                                                                                  2
+``PS1="\n \[\033[0;34m\]┌─────(\[\033[1;35m\]\u\[\033[0;34m\])─────(\[\033[1;32m\]\w\[\033[0;34m\]) \n └> \[\033[1;36m\]\$ \[\033[0m\]"``   2
+``PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '``                                                                                                 2
+``PS1='``                                                                                                                                   2
+``PS1="$PS1"'\[\e[0m\]'                          # reset all``                                                                              2
+=========================================================================================================================================  ==
 
 
 PS2
 ~~~
 
 
-==============================================================  =
-``PS2="loop \$ "``                                              1
-``PS2='             \[\033[1m\]>>\[\033[0m\] '``                1
-``PS2="\[$(tput setaf 51)\]$(tput bold)└─‖ \[$(tput sgr0)\]"``  1
-``PS2="\[${fcya}\]> \[${fdef}\]"``                              1
-``PS2='>>> '``                                                  1
-``PS2="> "``                                                    1
-==============================================================  =
+==============================================  =
+``PS2="\[${yellow}\]→ \[${reset}\]";``          2
+``PS2="$> "``                                   1
+``PS2='> '``                                    1
+``PS2="\\ "``                                   1
+``PS2=" "``                                    1
+``PS2="${COLOR_BOLD_PURPLE}>${COLOR_RESET} "``  1
+``PS2='$> '``                                   1
+==============================================  =
 
 
 Radline macros
 ~~~~~~~~~~~~~~
 
 
-============================================  ==
-``bind "set completion-ignore-case on"``      18
-``bind "set show-all-if-ambiguous on"``       16
-``bind '"\e[A": history-search-backward'``    13
-``bind '"\e[B": history-search-forward'``     13
-``bind 'set show-all-if-ambiguous on'``        7
-``bind "set completion-map-case on"``          7
-``bind "set mark-symlinked-directories on"``   6
-``bind 'set completion-ignore-case on'``       5
-``bind '"\e[A":history-search-backward'``      4
-``bind '"\e[B":history-search-forward'``       4
-============================================  ==
+==========================================  ==
+``bind "set completion-ignore-case on"``    12
+``bind '"\e[A": history-search-backward'``  10
+``bind '"\e[B": history-search-forward'``   10
+``bind "set show-all-if-ambiguous on"``     10
+``bind 'set show-all-if-ambiguous on'``      6
+``bind 'set completion-ignore-case on'``     5
+``bind 'TAB:menu-complete'``                 5
+``bind "set completion-map-case on"``        5
+``bind '"\e[A":history-search-backward'``    4
+``bind '"\e[B":history-search-forward'``     4
+==========================================  ==
 
 
 Bspwm
@@ -176,6 +185,135 @@ Exports
 ================================================================================  ==
 
 
+i3wm
+----
+
+
+Modkey
+~~~~~~
+
+
+================================  ===
+``set $mod Mod4``                 732
+``set $mod Mod1``                 118
+``set $mod mod4``                   4
+``set $mod Mod3``                   3
+``set $mod = Mod1``                 1
+``set $mod Ctrl``                   1
+``set $mod mod1``                   1
+``set $mod   Mod1``                 1
+``set $mod                Mod4``    1
+================================  ===
+
+
+Font
+~~~~
+
+
+==================================================================  ===
+``font pango:monospace 8``                                          200
+``font xft:URWGothic-Book 11``                                       46
+``font pango:DejaVu Sans Mono 8``                                    40
+``font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1``   40
+``font pango:monospace 10``                                          23
+``font pango:monospace 9``                                           15
+``font pango:Noto Mono Regular 13``                                  13
+``font pango:DejaVu Sans Mono 10``                                   12
+``font pango:monospace 12``                                          10
+``font pango:DejaVu Sans Mono 12``                                    9
+==================================================================  ===
+
+
+Keybindings
+~~~~~~~~~~~
+
+
+============================================  ===
+``bindsym $mod+Shift+r restart``              768
+``bindsym $mod+Shift+space floating toggle``  730
+``bindsym $mod+Shift+c reload``               723
+``bindsym $mod+f fullscreen toggle``          719
+``bindsym $mod+r mode "resize"``              713
+``bindsym $mod+space focus mode_toggle``      684
+``bindsym $mod+Right focus right``            683
+``bindsym $mod+Shift+Right move right``       675
+``bindsym $mod+Down focus down``              671
+``bindsym $mod+Up focus up``                  671
+============================================  ===
+
+
+Modes
+~~~~~
+
+
+=============================  ===
+``mode "resize" {``            791
+``mode "$mode_system" {``      201
+``mode "$mode_gaps" {``        152
+``mode "$mode_gaps_inner" {``  152
+``mode "$mode_gaps_outer" {``  152
+``mode "$mode_launcher" {``     15
+``mode "$mode_display" {``      12
+``mode "Resize Mode" {``        11
+``mode "$mode_gaps_horiz" {``   10
+``mode "$mode_gaps_verti" {``   10
+=============================  ===
+
+
+Inner gaps
+~~~~~~~~~~
+
+
+=================  ===
+``gaps inner 10``  117
+``gaps inner 5``    73
+``gaps inner 14``   48
+``gaps inner 15``   45
+``gaps inner 0``    26
+``gaps inner 8``    26
+``gaps inner 20``   26
+``gaps inner 6``    24
+``gaps inner 12``   16
+``gaps inner 7``    15
+=================  ===
+
+
+Outer gaps
+~~~~~~~~~~
+
+
+=================  ===
+``gaps outer 0``   123
+``gaps outer 5``    63
+``gaps outer -2``   59
+``gaps outer 10``   30
+``gaps outer 2``    22
+``gaps outer 15``   13
+``gaps outer 1``    13
+``gaps outer -4``   12
+``gaps outer 20``   10
+``gaps outer 12``    8
+=================  ===
+
+
+exec
+~~~~
+
+
+==================================================================================  ===
+``exec --no-startup-id nm-applet``                                                  352
+``exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork``          127
+``exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1``   91
+``exec --no-startup-id pamac-tray``                                                  85
+``exec --no-startup-id xfce4-power-manager``                                         84
+``exec --no-startup-id volumeicon``                                                  77
+``exec --no-startup-id clipit``                                                      65
+``exec --no-startup-id nitrogen --restore; sleep 1; compton -b``                     52
+``exec --no-startup-id dunst``                                                       49
+``exec --no-startup-id blueman-applet``                                              44
+==================================================================================  ===
+
+
 Neovim
 ------
 
@@ -185,16 +323,16 @@ Set statements
 
 
 =======================  ===
-``set expandtab``        391
-``set number``           378
-``set hidden``           320
-``set ignorecase``       284
-``set background=dark``  270
-``set shiftwidth=4``     270
-``set smartcase``        258
-``set mouse=a``          255
-``set nobackup``         250
-``set tabstop=4``        247
+``set number``           399
+``set expandtab``        387
+``set hidden``           355
+``set ignorecase``       322
+``set smartcase``        293
+``set termguicolors``    260
+``set mouse=a``          252
+``set nobackup``         252
+``set background=dark``  250
+``set shiftwidth=4``     249
 =======================  ===
 
 
@@ -203,16 +341,16 @@ Colorschemes
 
 
 ============================  ==
-``colorscheme gruvbox``       97
-``colorscheme dracula``       35
-``colorscheme onedark``       32
-``colorscheme nord``          22
+``colorscheme gruvbox``       98
+``colorscheme onedark``       36
+``colorscheme dracula``       27
+``colorscheme nord``          25
 ``colorscheme molokai``       21
-``colorscheme PaperColor``    17
-``colorscheme one``           17
-``colorscheme solarized``     16
-``colorscheme OceanicNext``   15
-``colorscheme NeoSolarized``  14
+``colorscheme one``           18
+``colorscheme wal``           13
+``colorscheme PaperColor``    11
+``colorscheme NeoSolarized``  10
+``colorscheme ayu``            9
 ============================  ==
 
 
@@ -221,16 +359,16 @@ Vundle plugins
 
 
 ===========================================  ==
-``Plugin 'VundleVim/Vundle.vim'``            10
-``Plugin 'scrooloose/nerdtree'``             10
-``Plugin 'tpope/vim-fugitive'``               8
-``Plugin 'vim-airline/vim-airline-themes'``   8
-``Plugin 'airblade/vim-gitgutter'``           7
-``Plugin 'vim-airline/vim-airline'``          7
-``Plugin 'ryanoasis/vim-devicons'``           5
-``Plugin 'tpope/vim-surround'``               5
-``Plugin 'Yggdroot/indentLine'``              4
-``Plugin 'godlygeek/tabular'``                4
+``Plugin 'VundleVim/Vundle.vim'``            20
+``Plugin 'scrooloose/nerdtree'``             15
+``Plugin 'tpope/vim-surround'``              14
+``Plugin 'tpope/vim-fugitive'``              13
+``Plugin 'vim-airline/vim-airline'``          9
+``Plugin 'scrooloose/nerdcommenter'``         9
+``Plugin 'ryanoasis/vim-devicons'``           9
+``Plugin 'itchyny/lightline.vim'``            8
+``Plugin 'vim-airline/vim-airline-themes'``   6
+``Plugin 'majutsushi/tagbar'``                6
 ===========================================  ==
 
 
@@ -239,16 +377,16 @@ Vim-plug plugins
 
 
 ===================================================  ===
-``Plug 'tpope/vim-fugitive'``                        288
-``Plug 'tpope/vim-surround'``                        260
-``Plug 'junegunn/fzf.vim'``                          242
-``Plug 'vim-airline/vim-airline'``                   231
-``Plug 'neoclide/coc.nvim', {'branch': 'release'}``  202
-``Plug 'scrooloose/nerdtree'``                       193
-``Plug 'tpope/vim-commentary'``                      188
-``Plug 'airblade/vim-gitgutter'``                    185
-``Plug 'vim-airline/vim-airline-themes'``            177
-``Plug 'jiangmiao/auto-pairs'``                      135
+``Plug 'tpope/vim-fugitive'``                        312
+``Plug 'tpope/vim-surround'``                        281
+``Plug 'junegunn/fzf.vim'``                          267
+``Plug 'vim-airline/vim-airline'``                   241
+``Plug 'neoclide/coc.nvim', {'branch': 'release'}``  209
+``Plug 'scrooloose/nerdtree'``                       201
+``Plug 'airblade/vim-gitgutter'``                    198
+``Plug 'tpope/vim-commentary'``                      194
+``Plug 'vim-airline/vim-airline-themes'``            191
+``Plug 'itchyny/lightline.vim'``                     150
 ===================================================  ===
 
 
@@ -323,16 +461,16 @@ Set statements
 
 
 ======================  ===
-``set expandtab``       434
-``set number``          415
-``set laststatus=2``    339
-``set hlsearch``        339
-``set shiftwidth=4``    323
-``set nocompatible``    312
-``set incsearch``       307
-``set tabstop=4``       300
-``set encoding=utf-8``  291
-``set ignorecase``      290
+``set expandtab``       469
+``set number``          417
+``set hlsearch``        351
+``set incsearch``       337
+``set nocompatible``    319
+``set laststatus=2``    305
+``set autoindent``      302
+``set ignorecase``      284
+``set shiftwidth=4``    283
+``set encoding=utf-8``  270
 ======================  ===
 
 
@@ -341,16 +479,16 @@ Colorschemes
 
 
 ==========================  ==
-``colorscheme gruvbox``     65
-``colorscheme solarized``   41
-``colorscheme desert``      26
-``colorscheme molokai``     21
+``colorscheme gruvbox``     70
+``colorscheme molokai``     37
+``colorscheme solarized``   34
+``colorscheme desert``      22
 ``colorscheme onedark``     18
-``colorscheme jellybeans``  17
-``colorscheme dracula``     16
-``colorscheme PaperColor``  13
-``colorscheme nord``        10
-``colorscheme elflord``      9
+``colorscheme jellybeans``  15
+``colorscheme nord``        13
+``colorscheme dracula``     12
+``colorscheme slate``       10
+``colorscheme solarized8``   8
 ==========================  ==
 
 
@@ -359,16 +497,16 @@ Vundle plugins
 
 
 ===========================================  ===
-``Plugin 'VundleVim/Vundle.vim'``            117
-``Plugin 'tpope/vim-fugitive'``               70
-``Plugin 'scrooloose/nerdtree'``              69
-``Plugin 'tpope/vim-surround'``               49
-``Plugin 'vim-airline/vim-airline'``          46
-``Plugin 'vim-airline/vim-airline-themes'``   35
-``Plugin 'kien/ctrlp.vim'``                   33
-``Plugin 'pangloss/vim-javascript'``          28
+``Plugin 'VundleVim/Vundle.vim'``            106
+``Plugin 'scrooloose/nerdtree'``              76
+``Plugin 'tpope/vim-fugitive'``               68
+``Plugin 'vim-airline/vim-airline'``          45
+``Plugin 'vim-airline/vim-airline-themes'``   40
+``Plugin 'tpope/vim-surround'``               34
 ``Plugin 'gmarik/Vundle.vim'``                27
-``Plugin 'scrooloose/nerdcommenter'``         25
+``Plugin 'morhetz/gruvbox'``                  24
+``Plugin 'kien/ctrlp.vim'``                   24
+``Plugin 'airblade/vim-gitgutter'``           23
 ===========================================  ===
 
 
@@ -377,16 +515,16 @@ Vim-plug plugins
 
 
 =========================================  ===
-``Plug 'tpope/vim-fugitive'``              149
-``Plug 'tpope/vim-surround'``              142
-``Plug 'junegunn/fzf.vim'``                127
-``Plug 'vim-airline/vim-airline'``         124
-``Plug 'scrooloose/nerdtree'``             110
-``Plug 'airblade/vim-gitgutter'``          107
-``Plug 'vim-airline/vim-airline-themes'``   87
-``Plug 'tpope/vim-commentary'``             87
-``Plug 'itchyny/lightline.vim'``            79
-``Plug 'tpope/vim-repeat'``                 67
+``Plug 'tpope/vim-fugitive'``              160
+``Plug 'tpope/vim-surround'``              152
+``Plug 'vim-airline/vim-airline'``         135
+``Plug 'junegunn/fzf.vim'``                123
+``Plug 'vim-airline/vim-airline-themes'``  115
+``Plug 'airblade/vim-gitgutter'``          109
+``Plug 'scrooloose/nerdtree'``             100
+``Plug 'tpope/vim-commentary'``             96
+``Plug 'tpope/vim-repeat'``                 88
+``Plug 'sheerun/vim-polyglot'``             73
 =========================================  ===
 
 
@@ -428,4 +566,80 @@ Daemons
 ``compton &``                         21
 ``redshift &``                        17
 ====================================  ==
+
+
+Zsh
+---
+
+
+Aliases
+~~~~~~~
+
+
+==================================  ==
+``alias vim="nvim"``                47
+``alias gs='git status'``           34
+``alias grep='grep --color=auto'``  34
+``alias vim='nvim'``                33
+``alias rm='rm -i'``                29
+``alias g='git'``                   29
+``alias gs="git status"``           28
+``alias ..='cd ..'``                26
+``alias mv='mv -i'``                25
+``alias vi="nvim"``                 24
+==================================  ==
+
+
+Exports
+~~~~~~~
+
+
+==============================================  ===
+``export ZSH=$HOME/.oh-my-zsh``                 107
+``export LANG=en_US.UTF-8``                     106
+``export NVM_DIR="$HOME/.nvm"``                  94
+``export ZSH="$HOME/.oh-my-zsh"``                66
+``export LC_ALL=en_US.UTF-8``                    66
+``export KEYTIMEOUT=1``                          65
+``export EDITOR=vim``                            48
+``export GPG_TTY=$(tty)``                        46
+``export GOPATH=$HOME/go``                       40
+``export PATH=$HOME/bin:/usr/local/bin:$PATH``   38
+==============================================  ===
+
+
+Theme
+~~~~~
+
+
+===========================================  ==
+``ZSH_THEME="robbyrussell"``                 89
+``ZSH_THEME="powerlevel10k/powerlevel10k"``  65
+``ZSH_THEME="agnoster"``                     52
+``ZSH_THEME="spaceship"``                    26
+``ZSH_THEME="powerlevel9k/powerlevel9k"``    25
+``ZSH_THEME="ys"``                           13
+``ZSH_THEME="bira"``                         12
+``ZSH_THEME=""``                             11
+``ZSH_THEME=powerlevel10k/powerlevel10k``     8
+``ZSH_THEME="random"``                        8
+===========================================  ==
+
+
+Keybindings
+~~~~~~~~~~~
+
+
+=====================================================  ===
+``bindkey -v``                                         145
+``bindkey -e``                                          75
+``bindkey -M menuselect 'l' vi-forward-char``           38
+``bindkey -M menuselect 'j' vi-down-line-or-history``   38
+``bindkey -M menuselect 'h' vi-backward-char``          37
+``bindkey -M menuselect 'k' vi-up-line-or-history``     37
+``bindkey -v '^?' backward-delete-char``                27
+``bindkey '^[[A' history-substring-search-up``          24
+``bindkey '^[[B' history-substring-search-down``        24
+``bindkey '^e' edit-command-line``                      19
+=====================================================  ===
 
